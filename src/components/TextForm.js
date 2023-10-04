@@ -2,43 +2,50 @@ import React, { useState } from 'react';
 
 
 export default function TextForm(props) {
-
+    
     // Declare a new state variable, which we'll call "text"
     const [text, setText] = useState('Enter Text Here Now');
     // text = "new text"; // Wrong way to change the state
     // setText("new text"); // Correct way to change the state
-
-    const handleUpClick = ()=>{
-        console.log("Uppercase was clicked " + text);
-        let newText = text.toUpperCase();
-        setText(newText);
-    }
-
-    const handleLoClick = ()=>{
-        console.log("Lowercase was clicked " + text);
-        let newText = text.toLowerCase();
-        setText(newText);
-    }
-
-    const handleClearClick = ()=>{
-        setText("");
-    }
+    
 
     const handleOnChange = (event)=>{
         console.log("On Change");
         setText(event.target.value);
     }
 
+
+    const handleUpClick = ()=>{
+        console.log("Uppercase was clicked " + text);
+        let newText = text.toUpperCase();
+        setText(newText);
+        props.showAlert("Converted to Uppercase!", "success");
+    }
+    
+    const handleLoClick = ()=>{
+        console.log("Lowercase was clicked " + text);
+        let newText = text.toLowerCase();
+        setText(newText);
+        props.showAlert("Converted to Lowercase!", "success");
+    }
+    
+    const handleClearClick = ()=>{
+        setText("");
+        props.showAlert("Text Cleared!", "success");
+    }
+    
     const handleCopy = ()=>{
         console.log("The text has been copied to clipboard");
         let newText = document.getElementById("myBox");
         newText.select();
         navigator.clipboard.writeText(newText.value);
+        props.showAlert("Text Copied!", "success");
     }
-
+    
     const handleExtraSpaces = ()=>{
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "));
+        props.showAlert("Extra Spaces Removed!", "success");
     }
 
   return (
