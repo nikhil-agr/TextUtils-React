@@ -3,6 +3,7 @@ import "./App.css";
 // import About from "./components/About";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
+import Alert from "./components/Alert";
 
 // let name = "<b>Nikhil</b>" // internal HTML doesn't get applied to avoid dangerous html
 function App() {
@@ -11,7 +12,7 @@ function App() {
   const toggleMode = ()=>{
     if(mode === 'light'){
       setMode('dark');
-      document.body.style.backgroundColor = '#4D3C77';
+      document.body.style.backgroundColor = '#213555';
     }
     else{
       setMode('light');
@@ -25,6 +26,7 @@ function App() {
       {/* <Navbar title="TextUtils" aboutText="About TextUtils" /> */}
       {/* <Navbar/> */}
       <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
+      <Alert alert="This is alert" />
       <div className="container my-3">
         <TextForm heading="Enter the text to analyze below" mode={mode} />
         {/* <About/> */}
